@@ -1,0 +1,114 @@
+:root {
+  --primary: #f97316;
+  --primary-dark: #c2570c;
+  --ink: #1f2937;
+  --muted: #6b7280;
+  --bg: #fff7ed;
+  --green: #16a34a;
+  --blue: #2563eb;
+  --red: #dc2626;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, 'Noto Sans Devanagari', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.app { max-width: 720px; margin: 0 auto; padding-bottom: 80px; }
+
+/* Top bar */
+.topbar { background: var(--primary); color: #fff; padding: 16px; text-align: center; }
+.topbar h1 { margin: 0; font-size: 1.6rem; }
+.topbar h1 span { font-weight: 400; font-size: 1.1rem; margin-left: 6px; }
+.topbar p { margin: 4px 0 0; font-size: 0.9rem; }
+
+main { padding: 16px; display: grid; gap: 16px; }
+
+.panel, .card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Mic */
+.mic-wrap { text-align: center; }
+.mic {
+  width: 96px; height: 96px; border-radius: 50%; border: none;
+  background: var(--primary); color: #fff; font-size: 2.4rem; cursor: pointer;
+  box-shadow: 0 6px 16px rgba(249, 115, 22, 0.4);
+}
+.mic:disabled { background: #d1d5db; box-shadow: none; cursor: not-allowed; }
+.mic.listening { background: var(--red); animation: pulse 1.2s infinite; }
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
+  100% { box-shadow: 0 0 0 24px rgba(220, 38, 38, 0); }
+}
+.hint { color: var(--muted); font-size: 0.9rem; margin: 8px 0 0; }
+.error { color: var(--red); font-size: 0.9rem; margin: 8px 0 0; }
+
+/* Text box and buttons */
+.row { display: flex; gap: 8px; margin-top: 16px; }
+.input {
+  flex: 1; min-width: 0; min-height: 52px; padding: 0 14px;
+  font-size: 1rem; border: 2px solid #e5e7eb; border-radius: 12px;
+}
+.input:focus { outline: none; border-color: var(--primary); }
+.btn {
+  min-height: 52px; padding: 0 18px; border: none; border-radius: 12px;
+  font-size: 1rem; font-weight: 600; cursor: pointer;
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:active { background: var(--primary-dark); }
+
+/* What the user said */
+.said { margin-top: 16px; padding: 12px; background: #f3f4f6; border-radius: 12px; }
+.said q { display: block; font-size: 1.1rem; margin: 4px 0 10px; }
+
+/* Badges */
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; }
+.badge-orange { background: #ffedd5; color: var(--primary-dark); }
+.badge-green { background: #dcfce7; color: var(--green); }
+.badge-blue { background: #dbeafe; color: var(--blue); }
+.badge-red { background: #fee2e2; color: var(--red); }
+
+/* Map */
+.map { height: 300px; border-radius: 16px; overflow: hidden; position: relative; z-index: 0; }
+.pin {
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 50%; font-size: 1.2rem;
+  background: #fff; border: 3px solid var(--primary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+.pin-user { border-color: var(--blue); }
+
+/* Worker list */
+.list-title { font-size: 1.1rem; margin: 0 0 12px; }
+.card { margin-bottom: 12px; }
+.card-top { display: flex; gap: 12px; align-items: center; margin-bottom: 10px; }
+.avatar {
+  width: 52px; height: 52px; border-radius: 50%; background: #ffedd5;
+  display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+}
+.card h3 { margin: 0 0 4px; font-size: 1.1rem; }
+.card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.card-bottom {
+  display: flex; flex-wrap: wrap; align-items: center;
+  justify-content: space-between; gap: 10px; margin-top: 12px;
+}
+.price small { display: block; color: var(--muted); font-size: 0.75rem; }
+.price strong { font-size: 1.4rem; }
+.card .btn { width: 100%; }
+@media (min-width: 600px) { .card .btn { width: auto; } }
+
+/* Toast message */
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+  background: #111827; color: #fff; padding: 14px 20px; border-radius: 12px;
+  z-index: 1000; font-size: 1rem; max-width: 90vw;
+}
